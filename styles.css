@@ -1,0 +1,59 @@
+/*   ::: RESET :::   */
+
+:where(html) {
+    scroll-behavior: smooth;
+    z-index: 0;
+}
+
+:where(html, body) {
+    width: 100vw;
+}
+
+:where(header,nav,main,section,article,footer,img) {
+    width: 100%;
+}
+
+:where(*) {
+    box-sizing: border-box;
+    padding: none;
+    margin: none;
+    overflow-x: hidden;
+}
+
+:where(*:nth-child(odd)) {
+    border: solid 1px red;
+}
+
+:where(*:nth-child(even)) {
+    border: solid 1px darkcyan;
+}
+
+:where(ul,ol,dl) {
+    list-style: none;
+}
+
+:where(li,dt,dd) {
+    text-indent: none;
+}
+
+:where(li>a) {
+    display: inline-block;
+}
+
+:where(img) {
+    object-fit: cover;
+}
+
+:where(figure,fieldset,ul,ol,dl) {
+    display: flex;
+}
+
+
+:where(a,:any-link,:-moz-any-link,:-webkit-any()) {
+    color: black;
+    text-decoration: none;
+}
+
+:where(::-webkit-search-cancel-button) {
+    display: none;
+}
