@@ -1,4 +1,4 @@
-/*   ::: RESET :::   */
+/*   ::: RESET : default style for interbrowsers compatibility :::   */
 
 :where(html) {
     scroll-behavior: smooth;
@@ -48,7 +48,6 @@
     display: flex;
 }
 
-
 :where(a,:any-link,:-moz-any-link,:-webkit-any()) {
     color: black;
     text-decoration: none;
@@ -57,3 +56,72 @@
 :where(::-webkit-search-cancel-button) {
     display: none;
 }
+
+
+
+/*   ::: COLORS :::   */
+
+/* variables */
+:root {
+    --cream: #f4e4d6;
+    --darkgreen: #333333;
+    --lightgreen: #edefee;
+}
+/* background */
+.card, .card > a,div {
+    background-color: var(--cream);
+}
+
+/* text : contrast on background */
+:is([style="background-color:var(--cream)"],[style="background:var(--lightgreen)"]) :not(p+a) {
+    color: black;
+}
+
+[style="background-color:var(--lightgreen)"] {
+    color: var(--lightgreen);
+}
+
+.card p+a {
+    color: blue;
+}
+
+
+
+/*   ::: FONTS :::   */
+
+
+
+/*   ::: SPACES :::   */
+
+/* variables */
+
+/* page's margins */
+
+/* articles's gap */
+
+/* nav links's spacement */
+
+/* footer items's spacement */
+
+/* main's padding */
+
+
+
+
+/*   ::: CONTAINERS :::   */
+
+/* variables */
+
+/* flexboxes */
+
+/* grids */
+
+
+/*   ::: ITEMS :::   */
+
+/* variables */
+
+/* flex items */
+
+/* grid cells */
+
