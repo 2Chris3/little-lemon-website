@@ -20,14 +20,6 @@
     overflow-x: hidden;
 }
 
-:where(*:nth-child(odd)) {
-    border: solid 1px red;
-}
-
-:where(*:nth-child(even)) {
-    border: solid 1px darkcyan;
-}
-
 :where(ul,ol,dl) {
     list-style: none;
 }
@@ -46,9 +38,10 @@
 
 :where(figure,fieldset,ul,ol,dl) {
     display: flex;
+    justify-content: center;
 }
 
-:where(a,:any-link,:-moz-any-link,:-webkit-any()) {
+:where(a,:any-link,:-moz-any-link) {
     color: black;
     text-decoration: none;
 }
@@ -67,13 +60,31 @@
     --darkgreen: #333333;
     --lightgreen: #edefee;
 }
-/* background */
-.card, .card > a,div {
+/* backgrounds */
+
+body {
+    background-color: var(--lightgreen);
+}
+
+.darkgreen-bg {
+    background-color: var(--darkgreen);
+}
+
+.darkgreen-bg * {
+    background: none;
+}
+
+.cream-bg {
     background-color: var(--cream);
 }
 
+.cream-bg * {
+    background: none;
+}
+
 /* text : contrast on background */
-:is([style="background-color:var(--cream)"],[style="background:var(--lightgreen)"]) :not(p+a) {
+:is([style="background-color:var(--cream)"],
+[style="background:var(--lightgreen)"]) :not(.card-link) {
     color: black;
 }
 
@@ -81,13 +92,29 @@
     color: var(--lightgreen);
 }
 
-.card p+a {
+.darkgreen-bg .txt {
+    color: var(--lightgreen);
+}
+
+.card-link {
     color: blue;
 }
 
 
 
 /*   ::: FONTS :::   */
+
+/* variables */
+:root {
+  --golden-ratio: 1.618;
+  --nav-link-size: calc(var(--golden-ratio) * 1rem);
+}
+
+.nav-link {
+    font-size: var(--nav-link-size);
+    font-family: 'Baskerville', Helvetica, sans-serif;
+    font-weight: 500;
+}
 
 
 
@@ -96,14 +123,25 @@
 /* variables */
 
 /* page's margins */
+body {
+    padding: 3rem;
+}
 
 /* articles's gap */
 
+/* nav bar's padding */
+
+
 /* nav links's spacement */
+.nav-bar {
+    gap: 1rem;
+}
 
 /* footer items's spacement */
 
 /* main's padding */
+
+/* card items's gap */
 
 
 
@@ -113,8 +151,24 @@
 /* variables */
 
 /* flexboxes */
+.nav-bar,
+.promo-banner
+.card,
+footer {
+    display: flex;
+}
+
+.nav-bar {
+    height: calc(var(--nav-link-size) * var(--golden-ratio));
+    align-items: center;
+}
 
 /* grids */
+body,
+.cards-container {
+    display: grid;
+}
+
 
 
 /*   ::: ITEMS :::   */
@@ -125,3 +179,40 @@
 
 /* grid cells */
 
+/* dimensions */
+
+
+
+/*   ::: IMAGES :::   */
+#header-logo {
+    width: calc(100% / var(--golden-ratio));
+}
+
+
+/*   ::: ROUNDED :::   */
+
+/* nav */
+.nav-bar {
+    border-radius: 0.9rem;
+}
+
+
+/*   ::: GUIDES :::   */
+/* : this a dynamic section for visualising the changes thanks to borders
+ during the styling process, but has to be erased once the project achieved :::   */
+
+:where(*:nth-child(odd)) {
+    border: solid 1px red;
+}
+
+:where(*:nth-child(even)) {
+    border: solid 1px darkcyan;
+}
+
+/* remove the borders from the sections you consider successfully finished */
+
+header,
+nav,
+:is(header,nav) * {
+    border: none;
+}
