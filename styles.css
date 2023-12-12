@@ -5,10 +5,6 @@
     z-index: 0;
 }
 
-:where(html, body) {
-    width: 100vw;
-}
-
 :where(header,nav,main,section,article,footer,img) {
     width: 100%;
 }
@@ -17,7 +13,6 @@
     box-sizing: border-box;
     padding: none;
     margin: none;
-    overflow-x: hidden;
 }
 
 :where(ul,ol,dl) {
@@ -62,7 +57,7 @@
 }
 /* backgrounds */
 
-body {
+.lightgreen-bg {
     background-color: var(--lightgreen);
 }
 
@@ -83,20 +78,20 @@ body {
 }
 
 /* text : contrast on background */
-:is([style="background-color:var(--cream)"],
-[style="background:var(--lightgreen)"]) :not(.card-link) {
+.cream-bg,
+.lightgreen-bg [class*="txt"]{
     color: black;
 }
 
-[style="background-color:var(--lightgreen)"] {
+.darkgreen-bg [class*="txt"] {
     color: var(--lightgreen);
 }
 
-.darkgreen-bg .txt {
-    color: var(--lightgreen);
+.pasta-bg [class*="txt"] {
+    color: white;
 }
 
-.card-link {
+.card__link {
     color: blue;
 }
 
@@ -108,40 +103,74 @@ body {
 :root {
   --golden-ratio: 1.618;
   --nav-link-size: calc(var(--golden-ratio) * 1rem);
+  --banner-title-size: calc(var(--nav-link-size) * var(--golden-ratio));
+  --paragraph-size: calc(1rem * var(--golden-ratio) / 2);
 }
 
-.nav-link {
+.nav__link,
+.card__title {
     font-size: var(--nav-link-size);
-    font-family: 'Baskerville', Helvetica, sans-serif;
     font-weight: 500;
+    text-shadow: 1px 0 black;
 }
 
+[class*="txt"] {
+    font-family: 'Georgia', Helvetica, sans-serif;
+}
+
+article:is(p, a) {
+    font-size: var(--paragraph-size);
+    line-height: calc(var(--golden-ratio) * 1em);
+}
+
+.banner__title {
+    font-size: var(--banner-title-size);
+    font-weight: 900;
+}
+
+.card__link {
+    text-decoration: underline blue;
+}
 
 
 /*   ::: SPACES :::   */
 
 /* variables */
+:root {
+    --title-line-height: calc(var(--golden-ratio) * 2em);
+}
+
+/* titles */
+[class*="title"] {
+    line-height: var(--title-line-height);
+    margin: 0;
+}
 
 /* page's margins */
 body {
     padding: 3rem;
 }
 
-/* articles's gap */
-
-/* nav bar's padding */
-
-
-/* nav links's spacement */
-.nav-bar {
+/* navbar */
+.nav__bar {
     gap: 1rem;
 }
 
 /* footer items's spacement */
 
-/* main's padding */
+/* main */
+main {
+    padding-top: 1rem;
+}
 
-/* card items's gap */
+/* articles */
+.card {
+    padding: 1rem;
+}
+
+.banner {
+    padding: 0 1rem 0 1rem;
+}
 
 
 
@@ -151,50 +180,111 @@ body {
 /* variables */
 
 /* flexboxes */
-.nav-bar,
-.promo-banner
-.card,
+.nav__bar,
+article
 footer {
     display: flex;
 }
 
-.nav-bar {
-    height: calc(var(--nav-link-size) * var(--golden-ratio));
+.nav__bar {
+    height: calc(var(--nav-link-size) * 2);
     align-items: center;
+}
+
+.schedule {
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1em;
+    margin-left: 2rem;
+}
+
+.days {
+    display: list-item;
+    text-indent: 1fr;
 }
 
 /* grids */
 body,
-.cards-container {
+main {
     display: grid;
+}
+
+body {
+    /* ! */
+    grid-auto-rows: repeat(4, auto)
+}
+
+main {
+    grid-template-areas: 
+                        "b b b"
+                        "c1 c2 c3";
+    grid-gap: 1rem;
 }
 
 
 
 /*   ::: ITEMS :::   */
 
-/* variables */
-
 /* flex items */
+.banner__txt {
+    width: 75%;
+    margin-top: 1rem;
+}
 
 /* grid cells */
+.banner {
+    grid-area: b
+}
 
-/* dimensions */
+.card:nth-child(0) {
+    grid-area: c1
+}
+
+.card:nth-child(1) {
+    grid-area: c2
+}
+
+.card:nth-child(2) {
+    grid-area: c3
+}
 
 
 
 /*   ::: IMAGES :::   */
-#header-logo {
+
+#header__logo {
     width: calc(100% / var(--golden-ratio));
+}
+
+.pasta-bg {
+    object-fit: cover;
+    background-image: url(./images/pasta-bg.jpg);
+    background-size: 120%;
+    background-position: -200px -400px;
+    box-shadow: inset 0 70px 70px rgba(25, 28, 26, 0.322);
+}
+
+.card__img {
+    margin: 1rem 0 1rem 0;
+}
+
+.card figure {
+    margin: 0;
 }
 
 
 /*   ::: ROUNDED :::   */
 
 /* nav */
-.nav-bar {
+.nav__bar,
+.banner,
+.card {
     border-radius: 0.9rem;
 }
+
+
+
+
 
 
 /*   ::: GUIDES :::   */
@@ -215,4 +305,8 @@ header,
 nav,
 :is(header,nav) * {
     border: none;
+}
+
+.banner {
+    background-color: teal;
 }
